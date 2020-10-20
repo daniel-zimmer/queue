@@ -7,7 +7,7 @@
 
 #include "queue.h"
 
-#define START_CAPACITY 6
+#define START_CAPACITY 16
 
 struct queue {
 	int len;
@@ -66,18 +66,17 @@ void *QUEUE_pop(Queue q) {
 }
 
 void QUEUE_delete(Queue q, void (*deleteFunc) (void *)) {
-	for (int i = q->head; i <= q->tail; i++) {
-		if (i > q->capacity) {
-			i = 0;
+	
+	if (deleteFunc) {
+		for (int i = q->head; i <= q->tail; i++) {
+			if (i > q->capacity) {
+				i = 0;
+			}
+			deleteFunc(q->elems[i]);
 		}
-		deleteFunc(q->elems[i]);
 	}
 
 	free(q);
-}
-
-void QUEUE_deleteSimple(void *elem) {
-
 }
 
 void QUEUE_deleteFree(void *elem) {
@@ -86,4 +85,8 @@ void QUEUE_deleteFree(void *elem) {
 
 int QUEUE_len(Queue q) {
 	return q->len;
+}
+
+int QUEUE_cap(Queue q) {
+	return q->capacity;
 }

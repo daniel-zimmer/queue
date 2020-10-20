@@ -15,10 +15,10 @@ void *QUEUE_pop(Queue q);
 
 void QUEUE_delete(Queue q, void (*deleteFunc) (void *));
 
-void QUEUE_deleteSimple(void *elem);
-
 void QUEUE_deleteFree(void *elem);
 
 int QUEUE_len(Queue q);
+
+int QUEUE_cap(Queue q);
 
 #endif // QUEUE_Hz
