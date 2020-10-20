@@ -35,7 +35,7 @@ print("Creating queue")
 q = libc.QUEUE_create()
 print(q.contents)
 
-steps = 1000
+steps = 10000
 
 print("Pushing and Popping")
 correct = 0
