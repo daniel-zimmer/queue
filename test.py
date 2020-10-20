@@ -47,7 +47,7 @@ for _ in range(steps):
 		q = libc.QUEUE_push(q, val)
 		pyq.insert(0, val)
 
-	opCount = randint(1, len(pyq))
+	opCount = randint(1, len(pyq)//30 + 1)
 	for _ in range(opCount):
 		expected = pyq.pop()
 		actual = libc.QUEUE_pop(q)
@@ -56,8 +56,8 @@ for _ in range(steps):
 			print("failed! actual: %d; expected %d" % (actual, expected))
 		else:
 			correct +=1
-
-print("(%d/%d)\n" % (correct, total))
+	print("\r(%d/%d)" % (correct, total), end=" ")
+print()
 
 print(q.contents)
 
@@ -72,8 +72,8 @@ while (libc.QUEUE_len(q) != 0):
 		print("failed! actual: %d; expected %d" % (actual, expected))
 	else:
 		correct +=1
-
-print("(%d/%d)\n" % (correct, total))
+	print("\r(%d/%d)" % (correct, total), end=" ")
+print()
 
 print(q.contents)
 
